@@ -45,9 +45,7 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 	int x;
 	int first;
 	int half_empty;
-	int center;
 
-	center = 0;
 	y = 0;
 	if (size % 2 == 0)
 		door_size = size - 1;
@@ -71,12 +69,11 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 				first++;
 				continue;
 			}
-			center = *tic / 2;
 			if (*block == size - 1 == 1 && y >= *g_block_height - door_size)
 			{
-				if (center - door_size / 2 <= x && x <= center + door_size / 2)
+				if ((*tic / 2) - door_size / 2 <= x && x <= (*tic / 2) + door_size / 2)
 				{
-					if (door_size >= 5 && x == center + door_size / 2 - 1
+					if (door_size >= 5 && x == (*tic / 2) + door_size / 2 - 1
 						&& y == *g_block_height - door_size + door_size / 2)
 						ft_putchar('$');
 					else
