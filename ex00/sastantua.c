@@ -12,7 +12,7 @@
 
 int		ft_putchar(char c);
 
-int g_block_height;
+int g_block_ht;
 
 int		calc_last_length(int size)
 {
@@ -38,9 +38,9 @@ int		calc_last_length(int size)
 	return (result);
 }
 
-void	create_block(int size, int *block, int *g_block_height, int *tic)
+void	create_block(int size, int *block, int *g_block_ht, int *tic)
 {
-	int door_size;
+	int door;
 	int y;
 	int x;
 	int first;
@@ -48,10 +48,10 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 
 	y = 0;
 	if (size % 2 == 0)
-		door_size = size - 1;
+		door = size - 1;
 	else
-		door_size = size;
-	while (y < *g_block_height)
+		door = size;
+	while (y < *g_block_ht)
 	{
 		first = 0;
 		x = 0;
@@ -69,12 +69,12 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 				first++;
 				continue;
 			}
-			if (*block == size - 1 == 1 && y >= *g_block_height - door_size)
+			if (*block == size - 1 == 1 && y >= *g_block_ht - door)
 			{
-				if ((*tic / 2) - door_size / 2 <= x && x <= (*tic / 2) + door_size / 2)
+				if ((*tic / 2) - door / 2 <= x && x <= (*tic / 2) + door / 2)
 				{
-					if (door_size >= 5 && x == (*tic / 2) + door_size / 2 - 1
-						&& y == *g_block_height - door_size + door_size / 2)
+					if (door >= 5 && x == (*tic / 2) + door / 2 - 1
+						&& y == *g_block_ht - door + door / 2)
 						ft_putchar('$');
 					else
 						ft_putchar('|');
@@ -119,14 +119,14 @@ void	sastantua(int size)
 
 	i = 0;
 	block = 0;
-	g_block_height = 3;
+	g_block_ht = 3;
 	tic = 1;
 	tick_add = 4;
 	tick_counter = 0;
 	while (i < size)
 	{
-		create_block(size, &block, &g_block_height, &tic);
-		g_block_height++;
+		create_block(size, &block, &g_block_ht, &tic);
+		g_block_ht++;
 		i++;
 		define_tic(&tick_counter, &tick_add, &tic);
 	}
