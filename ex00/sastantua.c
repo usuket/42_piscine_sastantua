@@ -56,43 +56,43 @@ void	create_d(int is_py, int is_d, int is_knob)
 		ft_putchar('*');
 }
 
+int g_d;
+int g_y;
+int g_x;
+int g_first;
+int g_half_empty;
+
 void	create_block(int size, int *block, int *g_b_ht, int *t)
 {
-	int d;
-	int y;
-	int x;
-	int first;
-	int half_empty;
-
-	y = 0;
+	g_y = 0;
 	if (size % 2 == 0)
-		d = size - 1;
+		g_d = size - 1;
 	else
-		d = size;
-	while (y < *g_b_ht)
+		g_d = size;
+	while (g_y < *g_b_ht)
 	{
-		first = 0;
-		x = 0;
-		half_empty = (calc_last_length(size) - *t) / 2 - 1;
-		while (half_empty-- > 0)
+		g_first = 0;
+		g_x = 0;
+		g_half_empty = (calc_last_length(size) - *t) / 2 - 1;
+		while (g_half_empty-- > 0)
 			ft_putchar(' ');
-		while (x < *t)
+		while (g_x < *t)
 		{
-			if (first == 0)
+			if (g_first == 0)
 			{
 				ft_putchar('/');
-				first++;
+				g_first++;
 				continue;
 			}
-			create_d(*block == size - 1 == 1 && y >= *g_b_ht - d,
-						(*t / 2) - d / 2 <= x && x <= (*t / 2) + d / 2,
-						(d >= 5 && x == (*t / 2) + d / 2 - 1 && y == *g_b_ht - d + d / 2));
-			x++;
+			create_d(*block == size - 1 == 1 && g_y >= *g_b_ht - g_d,
+						(*t / 2) - g_d / 2 <= g_x && g_x <= (*t / 2) + g_d / 2,
+						(g_d >= 5 && g_x == (*t / 2) + g_d / 2 - 1 && g_y == *g_b_ht - g_d + g_d / 2));
+			g_x++;
 		}
 		*t = *t + 2;
 		ft_putchar('\\');
 		ft_putchar('\n');
-		y++;
+		g_y++;
 	}
 	*block = *block + 1;
 }
