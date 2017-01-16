@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 int	ft_putchar(char c);
-
 int	calc_last_length(int size)
 {
 	int i;
@@ -39,15 +38,16 @@ int	calc_last_length(int size)
 void	create_block(int size, int btm_length, int *block, int *block_height, int *tic, int last_block)
 {
 	int door_size;
+	int y;
+	int x;
+	int first;
+
+	y = 0;
 
 	if (size % 2 == 0)
 		door_size = size - 1;
 	else
 		door_size = size;
-	int y;
-	int x;
-	y = 0;
-	int first;
 	while (y < *block_height)
 	{
 		first = 0;
