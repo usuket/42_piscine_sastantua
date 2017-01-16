@@ -47,14 +47,12 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 	int half_empty;
 	int center;
 	int last_block;
-	int btm_length;
 
-	btm_length = calc_last_length(size);
 	last_block = 0;
-	if (*block == size - 1)
-		last_block = 1;
 	center = 0;
 	y = 0;
+	if (*block == size - 1)
+		last_block = 1;
 	if (size % 2 == 0)
 		door_size = size - 1;
 	else
@@ -63,7 +61,7 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 	{
 		first = 0;
 		x = 0;
-		half_empty = (btm_length - *tic) / 2 - 1;
+		half_empty = (calc_last_length(size) - *tic) / 2 - 1;
 		while (half_empty > 0)
 		{
 			ft_putchar(' ');
