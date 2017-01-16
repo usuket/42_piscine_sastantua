@@ -56,11 +56,8 @@ void	create_block(int size, int *block, int *g_block_ht, int *tic)
 		first = 0;
 		x = 0;
 		half_empty = (calc_last_length(size) - *tic) / 2 - 1;
-		while (half_empty > 0)
-		{
+		while (half_empty-- > 0)
 			ft_putchar(' ');
-			half_empty--;
-		}
 		while (x < *tic)
 		{
 			if (first == 0)
