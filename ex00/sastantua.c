@@ -12,7 +12,7 @@
 
 int		ft_putchar(char c);
 
-int g_block_ht;
+int g_b_ht;
 
 int		calc_last_length(int size)
 {
@@ -38,9 +38,27 @@ int		calc_last_length(int size)
 	return (result);
 }
 
-void	create_block(int size, int *block, int *g_block_ht, int *tic)
+void	create_d(int is_py, int is_d, int is_knob)
 {
-	int door;
+	if (is_py)
+	{
+		if (is_d)
+		{
+			if (is_knob)
+				ft_putchar('$');
+			else
+				ft_putchar('|');
+		}
+		else
+			ft_putchar('*');
+	}
+	else
+		ft_putchar('*');
+}
+
+void	create_block(int size, int *block, int *g_b_ht, int *t)
+{
+	int d;
 	int y;
 	int x;
 	int first;
@@ -48,17 +66,17 @@ void	create_block(int size, int *block, int *g_block_ht, int *tic)
 
 	y = 0;
 	if (size % 2 == 0)
-		door = size - 1;
+		d = size - 1;
 	else
-		door = size;
-	while (y < *g_block_ht)
+		d = size;
+	while (y < *g_b_ht)
 	{
 		first = 0;
 		x = 0;
-		half_empty = (calc_last_length(size) - *tic) / 2 - 1;
+		half_empty = (calc_last_length(size) - *t) / 2 - 1;
 		while (half_empty-- > 0)
 			ft_putchar(' ');
-		while (x < *tic)
+		while (x < *t)
 		{
 			if (first == 0)
 			{
@@ -66,24 +84,12 @@ void	create_block(int size, int *block, int *g_block_ht, int *tic)
 				first++;
 				continue;
 			}
-			if (*block == size - 1 == 1 && y >= *g_block_ht - door)
-			{
-				if ((*tic / 2) - door / 2 <= x && x <= (*tic / 2) + door / 2)
-				{
-					if (door >= 5 && x == (*tic / 2) + door / 2 - 1
-						&& y == *g_block_ht - door + door / 2)
-						ft_putchar('$');
-					else
-						ft_putchar('|');
-				}
-				else
-					ft_putchar('*');
-			}
-			else
-				ft_putchar('*');
+			create_d(*block == size - 1 == 1 && y >= *g_b_ht - d,
+						(*t / 2) - d / 2 <= x && x <= (*t / 2) + d / 2,
+						(d >= 5 && x == (*t / 2) + d / 2 - 1 && y == *g_b_ht - d + d / 2));
 			x++;
 		}
-		*tic = *tic + 2;
+		*t = *t + 2;
 		ft_putchar('\\');
 		ft_putchar('\n');
 		y++;
@@ -91,18 +97,18 @@ void	create_block(int size, int *block, int *g_block_ht, int *tic)
 	*block = *block + 1;
 }
 
-void	define_tic(int *tick_counter, int *tick_add, int *tic)
+void	define_tic(int *tk_counter, int *tk_add, int *t)
 {
-	if (*tick_counter == 1)
+	if (*tk_counter == 1)
 	{
-		*tic = *tic + *tick_add;
-		*tick_add = *tick_add + 2;
-		*tick_counter = 0;
+		*t = *t + *tk_add;
+		*tk_add = *tk_add + 2;
+		*tk_counter = 0;
 	}
 	else
 	{
-		*tic = *tic + *tick_add;
-		*tick_counter = *tick_counter + 1;
+		*t = *t + *tk_add;
+		*tk_counter = *tk_counter + 1;
 	}
 }
 
@@ -116,14 +122,14 @@ void	sastantua(int size)
 
 	i = 0;
 	block = 0;
-	g_block_ht = 3;
+	g_b_ht = 3;
 	tic = 1;
 	tick_add = 4;
 	tick_counter = 0;
 	while (i < size)
 	{
-		create_block(size, &block, &g_block_ht, &tic);
-		g_block_ht++;
+		create_block(size, &block, &g_b_ht, &tic);
+		g_b_ht++;
 		i++;
 		define_tic(&tick_counter, &tick_add, &tic);
 	}
