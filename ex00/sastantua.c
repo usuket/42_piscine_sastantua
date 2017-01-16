@@ -46,13 +46,9 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 	int first;
 	int half_empty;
 	int center;
-	int last_block;
 
-	last_block = 0;
 	center = 0;
 	y = 0;
-	if (*block == size - 1)
-		last_block = 1;
 	if (size % 2 == 0)
 		door_size = size - 1;
 	else
@@ -76,7 +72,7 @@ void	create_block(int size, int *block, int *g_block_height, int *tic)
 				continue;
 			}
 			center = *tic / 2;
-			if (last_block == 1 && y >= *g_block_height - door_size)
+			if (*block == size - 1 == 1 && y >= *g_block_height - door_size)
 			{
 				if (center - door_size / 2 <= x && x <= center + door_size / 2)
 				{
