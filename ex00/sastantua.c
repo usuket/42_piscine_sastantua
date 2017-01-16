@@ -101,6 +101,21 @@ void	create_block(int size, int *block, int *block_height, int *tic)
 	*block = *block + 1;
 }
 
+void	define_tic(int *tick_counter, int *tick_add, int *tic)
+{
+	if (*tick_counter == 1)
+	{
+		*tic = *tic + *tick_add;
+		*tick_add = *tick_add + 2;
+		*tick_counter = 0;
+	}
+	else
+	{
+		*tic = *tic + *tick_add;
+		*tick_counter = *tick_counter + 1;
+	}
+}
+
 void	sastantua(int size)
 {
 	int block;
@@ -120,17 +135,7 @@ void	sastantua(int size)
 	{
 		create_block(size, &block, &block_height, &tic);
 		block_height++;
-		if (tick_counter == 1)
-		{
-			tic = tic + tick_add;
-			tick_add += 2;
-			tick_counter = 0;
-		}
-		else
-		{
-			tic = tic + tick_add;
-			tick_counter++;
-		}
 		i++;
+		define_tic(&tick_counter, &tick_add, &tic);
 	}
 }
