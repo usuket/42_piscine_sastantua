@@ -101,6 +101,7 @@ void	sastantua(int size)
 	int i;
 	int tick_add;
 	int tick_counter;
+	int last_block;
 
 	block = 0;
 	block_height = 3;
@@ -111,7 +112,7 @@ void	sastantua(int size)
 	tick_counter = 0;
 	while (i < size)
 	{
-		int last_block = 0;
+		last_block = 0;
 		if (block == size - 1)
 			last_block = 1;
 		create_block(size, btm_length, &block, &block_height, &tic, last_block);
