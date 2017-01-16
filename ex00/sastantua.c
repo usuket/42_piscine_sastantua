@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putchar(char c);
-int	calc_last_length(int size)
+int		ft_putchar(char c);
+
+int		calc_last_length(int size)
 {
 	int i;
 	int result;
