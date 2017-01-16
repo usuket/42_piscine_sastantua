@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putchar(char c);
-
-int	calc_last_length(int size)
+int		ft_putchar(char c);
+int		calc_last_length(int size)
 {
 	int i;
 	int result;
@@ -21,8 +20,11 @@ int	calc_last_length(int size)
 	result = 0;
 	while (i < size)
 	{
-		int block_height = i + 2;
-		int diff_of_next = 0;
+		int block_height;
+		int diff_of_next;
+
+		block_height = i + 2;
+		diff_of_next = 0;
 		if (i % 2 == 0)
 			diff_of_next = block_height * 3 + 2;
 		else
@@ -69,7 +71,8 @@ void	create_block(int size, int btm_length, int *block, int *block_height, int *
 			{
 				if (center - door_size / 2 <= x && x <= center + door_size / 2)
 				{
-					if (door_size >= 5 && x == center + door_size / 2 - 1 && y == *block_height - door_size + door_size / 2)
+					if (door_size >= 5 && x == center + door_size / 2 - 1
+						&& y == *block_height - door_size + door_size / 2)
 						ft_putchar('$');
 					else
 						ft_putchar('|');
@@ -91,13 +94,21 @@ void	create_block(int size, int btm_length, int *block, int *block_height, int *
 
 void	sastantua(int size)
 {
-	int block = 0;
-	int block_height = 3;
-	int tic = 1;
-	int btm_length = calc_last_length(size);
-	int i = 0;
-	int tick_add = 4;
-	int tick_counter = 0;
+	int block;
+	int block_height;
+	int tic;
+	int btm_length;
+	int i;
+	int tick_add;
+	int tick_counter;
+
+	block = 0;
+	block_height = 3;
+	tic = 1;
+	btm_length = calc_last_length(size);
+	i = 0;
+	tick_add = 4;
+	tick_counter = 0;
 	while (i < size)
 	{
 		int last_block = 0;
