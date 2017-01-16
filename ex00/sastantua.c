@@ -38,8 +38,20 @@ int		calc_last_length(int size)
 	return (result);
 }
 
+int g_d;
+int g_y;
+int g_x;
+int g_first;
+int g_half_empty;
+
 void	create_d(int is_py, int is_d, int is_knob)
 {
+	if (g_first == 0)
+	{
+		ft_putchar('/');
+		g_first++;
+		return ;
+	}
 	if (is_py)
 	{
 		if (is_d)
@@ -54,21 +66,15 @@ void	create_d(int is_py, int is_d, int is_knob)
 	}
 	else
 		ft_putchar('*');
+	g_x++;
 }
-
-int g_d;
-int g_y;
-int g_x;
-int g_first;
-int g_half_empty;
 
 void	create_block(int size, int *block, int *g_b_ht, int *t)
 {
+	int is_knob_a;
+	int is_knob_b;
+
 	g_y = 0;
-	if (size % 2 == 0)
-		g_d = size - 1;
-	else
-		g_d = size;
 	while (g_y < *g_b_ht)
 	{
 		g_first = 0;
@@ -78,16 +84,11 @@ void	create_block(int size, int *block, int *g_b_ht, int *t)
 			ft_putchar(' ');
 		while (g_x < *t)
 		{
-			if (g_first == 0)
-			{
-				ft_putchar('/');
-				g_first++;
-				continue;
-			}
+			is_knob_a = (g_d >= 5 && g_x == (*t / 2) + g_d / 2 - 1);
+			is_knob_b = (g_y == *g_b_ht - g_d + g_d / 2);
 			create_d(*block == size - 1 == 1 && g_y >= *g_b_ht - g_d,
 						(*t / 2) - g_d / 2 <= g_x && g_x <= (*t / 2) + g_d / 2,
-						(g_d >= 5 && g_x == (*t / 2) + g_d / 2 - 1 && g_y == *g_b_ht - g_d + g_d / 2));
-			g_x++;
+						is_knob_a && is_knob_b);
 		}
 		*t = *t + 2;
 		ft_putchar('\\');
@@ -120,6 +121,10 @@ void	sastantua(int size)
 	int tick_add;
 	int tick_counter;
 
+	if (size % 2 == 0)
+		g_d = size - 1;
+	else
+		g_d = size;
 	i = 0;
 	block = 0;
 	g_b_ht = 3;
