@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_putchar(char c);
-int		calc_last_length(int size)
+int	ft_putchar(char c);
+
+int	calc_last_length(int size)
 {
 	int i;
 	int result;
+	int block_height;
+	int diff_of_next;
 
 	i = 0;
 	result = 0;
 	while (i < size)
 	{
-		int block_height;
-		int diff_of_next;
-
 		block_height = i + 2;
 		diff_of_next = 0;
 		if (i % 2 == 0)
