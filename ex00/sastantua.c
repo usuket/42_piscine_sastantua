@@ -42,8 +42,9 @@ void	create_block(int size, int btm_length, int *block, int *block_height, int *
 	int x;
 	int first;
 	int half_empty;
-	int center = 0;
+	int center;
 
+	center = 0;
 	y = 0;
 	if (size % 2 == 0)
 		door_size = size - 1;
